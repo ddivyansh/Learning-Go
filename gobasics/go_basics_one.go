@@ -1,4 +1,4 @@
-package GoBasicsOne
+package gobasics
 
 import "fmt"
 

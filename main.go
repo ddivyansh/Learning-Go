@@ -4,10 +4,10 @@ package main
 Custom imports of packages using multi-imports
 */
 import (
-	"learning_go/GoBasicsOne"
+	"learninggo/gobasics"
 )
 
 func main() {
-	GoBasicsOne.Strings()
-	GoBasicsOne.WaysToDeclareVariables()
+	gobasics.Strings()
+	gobasics.WaysToDeclareVariables()
 }
