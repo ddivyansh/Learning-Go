@@ -1,3 +1,3 @@
-module hello_world
+module learning_go
 
 go 1.22.6
