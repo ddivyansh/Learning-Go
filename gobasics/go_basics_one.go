@@ -89,6 +89,11 @@ func DivideAndThrowError(numerator int, denominator int) (int, error) {
 /*
 Arrays are fixed size, contiguous block of memory, of the same type.
 int 32 -- 4 byte
+Intialisation of [] in Go
+
+var arr [] int = [] int {1,2,3}
+var arr = [] int {1,2,3}
+var arr [] int -- arr with default value i.e 0
 */
 func ArraysInGo() {
 	//The size of the arr is 3 with 12 bytes. T
@@ -135,4 +140,73 @@ func SlicingInGo() {
 	fmt.Println("the sliceArrayTwo is : ", sliceArrTwo)
 	fmt.Printf("the new size of the original [] is %v and the capacity is %v ", len(sliceArrTwo), cap(sliceArrTwo))
 
+}
+
+/*
+This function is about map data structure in golang
+
+	here key is string, and value is an int
+	var mapOne map[string]int = map[string]int{"one": 1, "two": 2}
+	var mapTwo = make(map[string]int)
+
+Accessing a key in map
+
+	map["key"]
+	var val, ok = mapOne["one"]
+	if any key is not found in golang map, the value which is returned in go is default value of the key, SO be careful
+	but go also return a boolean variable i.e ok (true if the key is found and false if the key is not found.
+
+Deletion of a key in golang
+
+	delete(mapName,KeyTobeDeleted)
+*/
+func MapsInGo() {
+	var mapOne map[string]int = map[string]int{"one": 1, "two": 2}
+	fmt.Println("the initialised map is : ", mapOne)
+	var mapTwo = make(map[string]int)
+	fmt.Println("the initialised map using make method is : ", mapTwo)
+	var val, ok = mapOne["one"]
+	if ok == true {
+		fmt.Println("the value at key 'one' is : ", val)
+	} else {
+		fmt.Println("the key with 'one is not found '")
+	}
+}
+
+/*
+Iteration in case of golang.
+We make use of the range keyword
+
+	for i := range arr {
+			fmt.Println(i)
+		}
+
+	for key, value := range golangMap {
+			fmt.Println(key, value)
+		}
+*/
+func IterationInGo() {
+	var arr []int = []int{4, 5, 6}
+	for i := range arr {
+		fmt.Println(i)
+	}
+	var golangMap map[string]int = map[string]int{"one": 1, "two": 2}
+	for key, value := range golangMap {
+		fmt.Println(key, value)
+	}
+	/*
+		A while loop in golang
+	*/
+	i := 0
+	for {
+		if i > 5 {
+			break
+		}
+		fmt.Println("The value of 'one' is : ", i)
+		i++
+	}
+
+	for j := 0; j < 5; j++ {
+		fmt.Println(j)
+	}
 }
