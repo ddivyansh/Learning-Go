@@ -1,6 +1,9 @@
 package gobasics
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 /*
 Exported methods start with upperCase
@@ -54,4 +57,82 @@ func WaysToDeclareVariables() {
 		var x1, x2 = 1, 2
 		y1, y2 := 1, 2
 	*/
+}
+
+/*
+this method divides numerator/denominator and the return type is int
+In go we can return multiple values instead of 1.
+*/
+func Divide(numerator int, denominator int) int {
+	fmt.Println(numerator / denominator)
+	var ans int = numerator / denominator
+	return ans
+}
+
+/*
+This method divides two numbers and returns the ans or error.
+For object default value is nil such as for error types.
+We can return multiple types such as (int, error)
+
+In go, the else and else-if statement has to be in the same line as the last }
+*/
+func DivideAndThrowError(numerator int, denominator int) (int, error) {
+	var err error
+	if numerator == 0 {
+		err = errors.New("numerator can't be 0")
+		return 0, err
+	} else {
+		return numerator / denominator, nil
+	}
+}
+
+/*
+Arrays are fixed size, contiguous block of memory, of the same type.
+int 32 -- 4 byte
+*/
+func ArraysInGo() {
+	//The size of the arr is 3 with 12 bytes. T
+	//The values of every element is 0(default value)
+	var arr [3]int32
+	fmt.Println("the unitialised array would have every element as default value : ", arr)
+	// end index is not included.
+	fmt.Println("we can slice the array as here 1 is starting index, uptil 3 index : ", arr[1:3])
+	fmt.Println("we can print the memory location of the arr as", &arr[0])
+	fmt.Println("we can slice the array as arr[:3]: ", arr[:3])
+	fmt.Println("we can print the size of [] : ", len(arr))
+
+	/*
+		The way to initialise the [] in go
+	*/
+	var arr2 [3]int = [3]int{1, 2, 3}
+	fmt.Println("the initialised array is : ", arr2)
+}
+
+/*
+Slicing happens to array using append() method
+Slicing is a powerfule tool in go, which uses an [] under the hood
+append(sliceArr, 3), here 3 is appended to sliceArr, if the capacity wasn't enough then a new array is formed
+And the elements are copied into the new array
+the capacity of the newly formed array is different or increased, so the nextslicing operation doesn't result in generation of a new array
+however if one tries to access the indexes where there's no element present so we'd runinto a runtime panic, "index out of bound"
+
+We can also slice or append another [] instead of a single elemnent.
+
+	var sliceArrTwo []int = []int{5, 6, 7}
+	sliceArrTwo = append(sliceArr, sliceArrTwo...)
+	We use ... spread operator to do so.
+
+len(obj) -- returns the number of characters in obj
+cap(obj) -- returns the capacity of obj
+*/
+func SlicingInGo() {
+	var sliceArr []int = []int{1, 2, 3} //Here the length of [] is automatically infered
+	sliceArr = append(sliceArr, 4)
+	fmt.Println("the initialised slice is : ", sliceArr)
+
+	var sliceArrTwo []int = []int{5, 6, 7}
+	sliceArrTwo = append(sliceArr, sliceArrTwo...)
+	fmt.Println("the sliceArrayTwo is : ", sliceArrTwo)
+	fmt.Printf("the new size of the original [] is %v and the capacity is %v ", len(sliceArrTwo), cap(sliceArrTwo))
+
 }
